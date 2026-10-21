@@ -1,0 +1,10 @@
+[project]
+name = "wifi-meter"
+version = "0.1.0"
+description = "Wi-Fi signal strength meter for a 480x320 SPI framebuffer LCD on Raspberry Pi"
+requires-python = ">=3.11"
+# On Raspberry Pi OS these come from apt: python3-pil python3-numpy python3-paho-mqtt
+dependencies = ["pillow", "numpy", "paho-mqtt>=2"]
+
+[project.scripts]
+wifi-meter = "wifi_meter.__main__:main"

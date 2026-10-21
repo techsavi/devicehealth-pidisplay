@@ -1,0 +1,16 @@
+[Unit]
+Description=Wi-Fi signal strength meter on a 480x320 LCD
+After=NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+User=pi
+Group=pi
+SupplementaryGroups=video netdev input gpio spi
+WorkingDirectory=/home/pi/pi_display
+ExecStart=/usr/bin/python3 -m wifi_meter
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

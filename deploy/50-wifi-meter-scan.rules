@@ -1,0 +1,17 @@
+// Let members of netdev (the "pi" user) ask NetworkManager for a Wi-Fi rescan
+// from non-desktop sessions such as SSH and systemd services.
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.NetworkManager.wifi.scan" &&
+        subject.isInGroup("netdev")) {
+        return polkit.Result.YES;
+    }
+});
+
+// Let pi start/stop/restart the meter service without sudo (used by deploy.ps1).
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.systemd1.manage-units" &&
+        action.lookup("unit") == "wifi-meter.service" &&
+        subject.user == "pi") {
+        return polkit.Result.YES;
+    }
+});

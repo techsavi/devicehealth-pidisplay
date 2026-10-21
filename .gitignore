@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.png
+*.so
+
+# Local settings and secrets: never commit
+deploy.local.json
+*.local.json
+!*.local.example.json
+.env
+.env.*
+mqtt.json
+touch.json
